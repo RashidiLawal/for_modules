@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Optionally, run phpcbf to fix issues automatically
+./vendor/bin/phpcbf
+
+# Add changes made by phpcbf to the commit
+git add .
+
+# Run phpcs to check for coding standards violations
+./vendor/bin/phpcs
+
+# Check if phpcs passed
+if [ $? -ne 0 ]; then
+    echo "PHPCS check failed. Please fix the issues before committing."
+    exit 1
+fi
+
+# Run phpstan to perform static analysis
+./vendor/bin/phpstan analyse
+
+if [ $? -ne 0 ]; then
+    echo "PHPStan check failed. Please fix the issues before committing."
+    exit 1
+fi
+
+echo "PHPCS and PHPStan checks passed. Proceeding with commit."

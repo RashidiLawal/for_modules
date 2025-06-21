@@ -1,0 +1,65 @@
+{
+    "name": "ankabit/bitcore",
+    "description": "A clean, modular PHP starter by Ankabit",
+    "keywords": [
+        "erp",
+        "crm",
+        "project",
+        "api"
+    ],
+    "homepage": "http://github.com/ankabit/bitcore",
+    "authors": [
+        {
+            "name": "Hammed Madandola",
+            "email": "aramicrown@gmail.com",
+            "homepage": "https://github.com/Aramics"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "aws/aws-sdk-php": "^3.338",
+        "illuminate/database": "^11.11",
+        "illuminate/events": "^11.11",
+        "illuminate/filesystem": "^11.39",
+        "illuminate/translation": "^11.11",
+        "illuminate/validation": "^11.11",
+        "league/flysystem-aws-s3-v3": "^3.29",
+        "monolog/monolog": "^3.6",
+        "nyholm/psr7": "^1.8",
+        "nyholm/psr7-server": "^1.1",
+        "phpmailer/phpmailer": "^6.9",
+        "phpoption/phpoption": "^1.9",
+        "slim/csrf": "^1.5",
+        "slim/slim": "^4.10",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "require-dev": {
+        "jangregor/phpstan-prophecy": "^1.0.0",
+        "mockery/mockery": "^1.6",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpstan/extension-installer": "^1.2.0",
+        "phpstan/phpstan": "^1.11",
+        "phpunit/phpunit": "^11.2.3",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "BitCore\\": "src/core/",
+            "BitCore\\Modules\\": "src/modules/",
+            "BitCore\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public",
+        "test": "phpunit --testdox --do-not-cache-result",
+        "debug": "phpstan"
+    }
+}
