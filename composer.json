@@ -1,0 +1,26 @@
+{
+    "name": "user/bit_try",
+    "autoload": {
+        "psr-4": {
+            "Modules\\": "src/modules/"
+        }
+    },
+    "scripts": {
+  "start": "php -S localhost:8000 -t public"
+},
+    "authors": [
+        {
+            "name": "Lawal Rashidi",
+            "email": "lawalrashidi95@gmail.com"
+        }
+    ],
+     "require": {
+        "ankabit/bitcore": "dev-main"
+ },
+ "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/ankabit/bitcore"
+    }
+ ]
+}

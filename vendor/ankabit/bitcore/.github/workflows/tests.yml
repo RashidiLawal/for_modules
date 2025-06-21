@@ -1,0 +1,62 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+jobs:
+    tests:
+        name: Tests PHP ${{ matrix.php }}
+        runs-on: ubuntu-latest
+        continue-on-error: ${{ matrix.experimental }}
+        strategy:
+            fail-fast: false
+            matrix:
+                php: [8.2]
+                experimental: [false]
+                include:
+                    - php: 8.2
+                      analysis: true
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up PHP ${{ matrix.php }}
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: xdebug
+
+            - name: Install dependencies with Composer
+              uses: ramsey/composer-install@v2
+
+            - name: Install dependencies for each module
+              run: |
+                for dir in src/modules/*/; do
+                  if [ -f "$dir/composer.json" ]; then
+                    echo "Installing dependencies in $dir"
+                    composer install --working-dir="$dir"
+                  else
+                    echo "No composer.json in $dir, skipping."
+                  fi
+                done
+
+            - name: Coding standards
+              if: matrix.analysis
+              run: vendor/bin/phpcs
+
+            - name: Static analysis
+              if: matrix.analysis
+              run: vendor/bin/phpstan
+            
+            - name: Provide sample test env
+              run: cp .env.test.example .env
+              
+            - name: Tests
+              run: vendor/bin/phpunit --testdox --do-not-cache-result
