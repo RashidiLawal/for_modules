@@ -10,7 +10,7 @@ use Tests\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-    protected $affiliateRepository;
+    protected $todoRepository;
 
     protected function setUp(): void
     {
@@ -23,6 +23,6 @@ class TestCase extends BaseTestCase
 
     protected function tearDown(): void
     {
-        $this->affiliateRepository = null;
+        $this->todoRepository = null;
     }
 }
