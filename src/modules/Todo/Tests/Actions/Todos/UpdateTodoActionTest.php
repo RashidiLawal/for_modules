@@ -15,9 +15,9 @@ class UpdateTodoActionTest extends TestCase
     /**
      * Generate route for updating a todo by ID.
      */
-    private function getRoute(int|string $affiliateId): string
+    private function getRoute(int|string $todo): string
     {
-        return $this->generateRouteUrl('affiliates.update', ['id' => $affiliateId]);
+        return $this->generateRouteUrl('todos.update', ['id' => $todo]);
     }
 
     /**
@@ -29,18 +29,18 @@ class UpdateTodoActionTest extends TestCase
         $app = $this->getAppInstance();
 
         // Create a test todo
-        $affiliate = $this->createTodo();
+        $todo = $this->createTodo();
 
         $requestData = [
-            'affiliate_name'     =>  'Updated Name',
-            'affiliate_slug'     =>  'updated_name',
+            'todo_title'     =>  'Updated Title',
+            'todo_slug'     =>  'updated_title',
             'status'           =>  'enabled',
         ];
 
         // Make a PUT request to edit the todo
         $request = $this->createRequestWithCsrf(
             $app,
-            $this->getRoute($affiliate->id),
+            $this->getRoute($todo->id),
             'PUT',
             $requestData
         );
@@ -53,7 +53,7 @@ class UpdateTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.affiliate_updated"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.todo_updated"), $payload['data']['message']);
     }
 
     /**
@@ -67,7 +67,7 @@ class UpdateTodoActionTest extends TestCase
         $affiliate = $this->createTodo();
 
         $requestData = [
-            'affiliate_name' => '', // Invalid name (empty)
+            'todo_title' => '', // Invalid name (empty)
         ];
 
         // Make a PUT request with invalid data

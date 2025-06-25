@@ -21,20 +21,20 @@ class ListAllTodoActionTest extends TestCase
      */
     private function getRoute(array $queryParams = []): string
     {
-        return $this->generateRouteUrl('affiliates.index', [], $queryParams);
+        return $this->generateRouteUrl('todos.index', [], $queryParams);
     }
 
     /**
      * Test successful fetching of all todos with pagination.
      */
-    public function testFetchAllAffiliateActionSuccess(): void
+    public function testFetchAllTodoActionSuccess(): void
     {
         $app = $this->getAppInstance();
 
         // Create test todos
-        $this->createTodo(['affiliate_name' => 'Affiliate 1']);
-        $this->createTodo(['affiliate_name' => 'Affiliate 2']);
-        $this->createTodo(['affiliate_name' => 'Affiliate 3']);
+        $this->createTodo(['todo_title' => 'Todo 1']);
+        $this->createTodo(['todo_title' => 'Todo 2']);
+        $this->createTodo(['todo_title' => 'Todo 3']);
 
         // Make a GET request to fetch all todos
         $request = $this->createRequest('GET', $this->getRoute([]));
@@ -46,7 +46,7 @@ class ListAllTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.fetch_success"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.fetch_success"), $payload['data']['message']);
     }
 
     /**
@@ -58,12 +58,12 @@ class ListAllTodoActionTest extends TestCase
         $app = $this->getAppInstance();
 
         // Create test todos
-        $this->createTodo(['affiliate_name' => 'Affiliate A']);
-        $this->createTodo(['affiliate_name' => 'Affiliate B']);
-        $this->createTodo(['affiliate_name' => 'Affiliate C']);
+        $this->createTodo(['todo_title' => 'Todo A']);
+        $this->createTodo(['todo_title' => 'Todo B']);
+        $this->createTodo(['todo_title' => 'Todo C']);
 
         // Make a GET request with a filter
-        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['affiliate_name' => 'Affiliate A']]);
+        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['todo_title' => odo A']]);
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
@@ -72,8 +72,8 @@ class ListAllTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.fetch_success"), $payload['data']['message']);
-        $this->assertArrayHasKey('affiliates', $payload['data']);
+        $this->assertEquals(trans("T odo::messages.fetch_success"), $payload['data']['message']);
+        $this->assertArrayHasKey(odos', $payload['data']);
     }
 
     /**
@@ -83,14 +83,14 @@ class ListAllTodoActionTest extends TestCase
     {
         $app = $this->getAppInstance();
 
-        // Create test affiliates
-        $this->createTodo(['affiliate_name' => 'Affiliate Z']);
-        $this->createTodo(['affiliate_name' => 'Affiliate A']);
-        $this->createTodo(['affiliate_name' => 'Affiliate M']);
+        // Create test todos
+        $this->createTodo(['todo_title' => 'Todo Z']);
+        $this->createTodo(['todo_title' => 'Todo A']);
+        $this->createTodo(['todo_title' => 'Todo M']);
 
         // Make a GET request with sorting
         $request = $this->createGetRequest($this->getRoute(), [
-            'sort_by' => 'affiliate_name',
+            'sort_by' => 'todo_title',
             'sort_order' => 'ASC'
         ]);
         $response = $app->handle($request);

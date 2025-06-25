@@ -31,12 +31,7 @@ class CreateTodoActionTest extends TestCase
         $requestData = [
             'todo_id'   => 1,
             'todo_title'   => 'Dodo ' . uniqid(),
-            'todo_description'   => 'fried plantain',
-            'complted'    => boolean_value(true), 
-            'created_at' => Carbon::now()->toDateTimeString(),
-            'deleted_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString(),
-
+            'todo_description'   => 'fried plantain'
         ];
 
         $request = $this->createRequestWithCsrf($app, $this->getRoute(), 'POST', $requestData);

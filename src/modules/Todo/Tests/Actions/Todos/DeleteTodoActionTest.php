@@ -15,9 +15,9 @@ class DeleteTodoActionTest extends TestCase
     /**
      * Generate route for updating a todo by ID.
      */
-    private function getRoute(int|string $affiliateId): string
+    private function getRoute(int|string $todoId): string
     {
-        return $this->generateRouteUrl('todos.delete', ['id' => $affiliateId]);
+        return $this->generateRouteUrl('todos.delete', ['id' => $todoId]);
     }
 
     /**
@@ -44,7 +44,7 @@ class DeleteTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.affiliate_deleted"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.Todo_deleted"), $payload['data']['message']);
     }
 
     /**
@@ -68,6 +68,6 @@ class DeleteTodoActionTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
         $this->assertEquals(404, $payload['statusCode']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.affiliate_not_found"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.affiliate_not_found"), $payload['data']['message']);
     }
 }
