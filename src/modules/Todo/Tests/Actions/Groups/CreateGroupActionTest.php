@@ -27,13 +27,9 @@ class CreateGroupActionTest extends TestCase
         $app = $this->getAppInstance();
 
         $requestData = [
-            'group_name'               => 'Elite Group ' . uniqid(),
-            'group_slug'               => 'elite-group-' . uniqid(),
-            'clicks_generated'         => 0,
-            'total_earnings'           => 0.00,
-            'is_auto_approved'         => true,
-            'default_commission_rate'  => 10.00,
-
+            'group_title'               => 'Elite Group ' . uniqid(),
+            'group_description'        => 'Elite Group Description ' . uniqid(),
+            'group_slug'               => 'elite-group-' . uniqid()
         ];
 
         $request = $this->createRequestWithCsrf($app, $this->getRoute(), 'POST', $requestData);
@@ -46,7 +42,7 @@ class CreateGroupActionTest extends TestCase
         $this->assertEquals(201, $payload['statusCode']);
         $this->assertArrayHasKey('status', $payload['data']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.group_created"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.group_created"), $payload['data']['message']);
         $this->assertArrayHasKey('data', $payload['data']);
         $this->assertNotEmpty($payload['data']['data']);
     }

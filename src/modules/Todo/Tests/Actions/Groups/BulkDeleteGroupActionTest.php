@@ -46,7 +46,7 @@ class BulkDeleteGroupActionTest extends TestCase
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertArrayHasKey('status', $payload['data']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.bulk_group_delete_success"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.bulk_group_delete_success"), $payload['data']['message']);
     }
 
     /**
@@ -71,6 +71,6 @@ class BulkDeleteGroupActionTest extends TestCase
         $this->assertEquals(422, $payload['statusCode']);
         $this->assertArrayHasKey('status', $payload['data']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.invalid_id_list"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.invalid_id_list"), $payload['data']['message']);
     }
 }
