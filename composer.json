@@ -22,5 +22,8 @@
         "type": "vcs",
         "url": "https://github.com/ankabit/bitcore"
     }
- ]
+ ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.2"
+    }
 }
