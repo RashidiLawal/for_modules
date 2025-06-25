@@ -11,32 +11,27 @@ use Modules\Todo\Requests\Todos\ListAllTodosRequest;
  {
      protected function action(): Response
     {
-         return $this->respondWithData([
+        try {
+            $queryParams = ListAllTodosRequest::data();
+
+            $affiliates = $this->todoRepository->fetchTodos(
+                $queryParams
+            );
+
+            return $this->respondWithData([
                 'status' => true,
                 'message' => trans("Todo::messages.fetch_success"),
-                'todos' => 'hello world'
+                'todos' => $affiliates
             ]);
-        // try {
-        //     $queryParams = ListAllTodosRequest::data();
+        } catch (\Exception $e) {
+            $this->logger->error("Failed to fetch todos: " . $e->getMessage());
 
-        //     $affiliates = $this->todoRepository->fetchAffiliates(
-        //         $queryParams
-        //     );
-
-        //     return $this->respondWithData([
-        //         'status' => true,
-        //         'message' => trans("Todo::messages.fetch_success"),
-        //         'todos' => $affiliates
-        //     ]);
-        // } catch (\Exception $e) {
-        //     $this->logger->error("Failed to fetch todos: " . $e->getMessage());
-
-        //     return $this->respondWithData([
-        //         'status' => false,
-        //         'error' => $e->getMessage(),
-        //         'message' => trans("Todo::messages.fetch_failed"),
-        //     ], 500);
-        // }
+            return $this->respondWithData([
+                'status' => false,
+                'error' => $e->getMessage(),
+                'message' => trans("Todo::messages.fetch_failed"),
+            ], 500);
+        }
     }
 
  }

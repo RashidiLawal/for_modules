@@ -23,14 +23,7 @@ class Todo extends AppModel
 {
     use SoftDeletes;
 
-    protected $fillable = ['todo_title', 'todo_description', 'todo_completed', 'created_at', 'updated_at', 'deleted_at'];
-
-    protected $casts = [
-        'completed' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
-    ];
+    protected $fillable = ['todo_title', 'todo_description', 'completed'];
     /**
      * Get the completed status as a boolean.
      *
@@ -49,5 +42,13 @@ class Todo extends AppModel
     public function setCompleted(bool $value): void
     {
         $this->completed = $value;
+    }
+
+    /**
+     * Get the group this todo belongs to.
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

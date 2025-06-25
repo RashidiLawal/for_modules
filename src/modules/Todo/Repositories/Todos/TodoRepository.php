@@ -53,7 +53,7 @@ class TodoRepository extends AppRepository implements TodoRepositoryInterface
      * @param array $filters
      * @return array
      */
-    public function getAffiliatesForExport(array $filters): array
+    public function getTodosForExport(array $filters): array
     {
         $query = Todo::query();
 
@@ -70,7 +70,7 @@ class TodoRepository extends AppRepository implements TodoRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function fetchAffiliates(
+    public function fetchTodos(
         array $queryParams
     ): array {
         $query = Todo::query();

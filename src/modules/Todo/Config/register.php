@@ -10,6 +10,3 @@ return function (Container $container) {
     $container->singleton(TodoRepositoryInterface::class, TodoRepository::class);
      $container->singleton(GroupRepositoryInterface::class, GroupRepository::class);
 };
-
-
-

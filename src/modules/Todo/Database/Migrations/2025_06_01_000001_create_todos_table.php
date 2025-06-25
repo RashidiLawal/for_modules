@@ -10,8 +10,8 @@
          if (!Capsule::schema()->hasTable('todos')) {
              Capsule::schema()->create('todos', function (mixed $table) {
                  $table->increments('id');
-                 $table->string('title')->unique();
-                 $table->text('description');
+                 $table->string('todo_title')->unique();
+                 $table->text('todo_description');
                  $table->boolean('completed')->default(false);
                  $table->timestamps();
                  $table->softDeletes();

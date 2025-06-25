@@ -14,12 +14,12 @@ class CreateTodoRequest extends RequestValidator
     public static function rules(): array
     {
         return [
-                'todo_title' => 'required|title|string|max:190',
-                'todo_description' => 'requiured|string|max:500',
-                'completed' => 'required|boolean',
-                'created_at'   => 'required|date',
-                'updated_at'   => 'required|date',
-                'deleted_at'    => 'required|date',
+                'todo_title' => 'required|string|max:255',
+                'todo_description' => 'required|string|max:255',
+                'completed' => 'boolean',
+                'created_at'   => 'sometimes|date',
+                'updated_at'   => 'sometimes|date',
+                'deleted_at'    => 'sometimes|date',
             ];
     }
 }
