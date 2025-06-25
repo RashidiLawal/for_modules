@@ -38,10 +38,7 @@ class Group extends AppModel
     protected $fillable = [
         'group_title',
         'group_description',
-        'group__completed',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'completed',
     ];
 
     protected $casts = [
