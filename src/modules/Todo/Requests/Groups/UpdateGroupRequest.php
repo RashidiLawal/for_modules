@@ -17,7 +17,7 @@ class UpdateGroupRequest extends RequestValidator
     {
         return [
             'group_title'             => 'required|string|max:255',
-            'group_description'       => 'required|string|max:255|alpha_dash',
+            'group_description'       => 'required|string|max:255',
             'group_completed'        => 'nullable|boolean',
             'created_at'            => 'nullable|date',
             'updated_at'            => 'nullable|date',

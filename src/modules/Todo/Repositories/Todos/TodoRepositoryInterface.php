@@ -65,7 +65,7 @@ interface TodoRepositoryInterface extends AppRepositoryInterface
      * @param array $filters Filters such as ['start_date' => ..., 'end_date' => ...].
      * @return array Array of filtered todo data ready for export.
      */
-    public function getAffiliatesForExport(array $filters): array;
+    public function getTodosForExport(array $filters): array;
 
     /**
      * Fetch paginated and filtered list of todoS.
@@ -75,7 +75,7 @@ interface TodoRepositoryInterface extends AppRepositoryInterface
      *     @type int   $total Total number of matching todos.
      * }
      */
-    public function fetchAffiliates(
+    public function fetchTodos(
         array $queryParams
     ): array;
 }

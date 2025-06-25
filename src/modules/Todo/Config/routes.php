@@ -48,7 +48,7 @@ return function (App $app) {
         $group->delete('/{id}', DeleteTodoAction::class)
             ->setName('todos.delete');
 
-        $group->get('/slug/{affiliate_slug}', ListTodoBySlugAction::class)
+        $group->get('/slug/{todo_slug}', ListTodoBySlugAction::class)
             ->setName('todos.fetchBySlug');
     });
 
