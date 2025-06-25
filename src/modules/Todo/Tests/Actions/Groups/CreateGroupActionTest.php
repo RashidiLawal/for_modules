@@ -29,6 +29,7 @@ class CreateGroupActionTest extends TestCase
         $requestData = [
             'group_title'               => 'Elite Group ' . uniqid(),
             'group_description'        => 'Elite Group Description ' . uniqid(),
+            'completed'                => true,
             'group_slug'               => 'elite-group-' . uniqid()
         ];
 

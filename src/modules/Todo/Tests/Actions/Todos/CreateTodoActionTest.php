@@ -31,7 +31,8 @@ class CreateTodoActionTest extends TestCase
         $requestData = [
             'todo_id'   => 1,
             'todo_title'   => 'Dodo ' . uniqid(),
-            'todo_description'   => 'fried plantain'
+            'todo_description'   => 'fried plantain',
+            'completed'   => true,
         ];
 
         $request = $this->createRequestWithCsrf($app, $this->getRoute(), 'POST', $requestData);

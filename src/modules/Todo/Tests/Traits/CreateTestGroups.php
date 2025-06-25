@@ -18,13 +18,10 @@ trait CreateTestGroups
     public function createGroup(array $data = []): Group
     {
         return Group::create(array_merge([
-            'group_name'               => 'Test Group ' . uniqid(),
+            'group_title'               => 'Test Group ' . uniqid(),
+            'group_description'        => 'Test for Group-' . uniqid(),
+            'completed'                => true,
             'group_slug'               => 'test-group-' . uniqid(),
-            'clicks_generated'         => 0,
-            'total_earnings'           => 0.0,
-            'is_auto_approved'         => true,
-            'default_commission_rate'  => 5.0,
-
         ], $data));
     }
 }

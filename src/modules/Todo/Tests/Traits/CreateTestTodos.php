@@ -10,24 +10,18 @@ use Modules\Todo\Models\Todo;
 trait CreateTestTodos
 {
     /**
-     * Creates a test affiliate record.
+     * 
+     * Creates a test todo record.
      *
-     * @param array $data Custom affiliate data to override defaults.
+     * @param array $data Custom todo data to override defaults.
      * @return Todo
      */
     public function createTodo(array $data = []): Todo
     {
         return Todo::create(array_merge([
-            'todo_name'    => 'Test Affiliate ' . uniqid(),
-            'todo_slug'    => 'test-affiliate-' . uniqid(),
-            'referral_link'     => 'https://example.com/referral/' . uniqid(),
-            'status'            => 'enabled',
-            'clicks_generated'  => 0,
-            'earnings'          => 0.0,
-            'payout_date'       => null,
-            'payout_status'     => 'pending',
-            'total_sales'       => 0,
-            'commission'        => 5.0,
+            'todo_title'          => 'Test Todo ' . uniqid(),
+            'todo_description'    => 'Description for Todo-' . uniqid(),
+            'completed'          => true,
             'group_id'          => 1, // Default group ID, adjust as needed
         ], $data));
     }
