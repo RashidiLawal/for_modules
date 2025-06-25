@@ -63,7 +63,7 @@ class ListAllTodoActionTest extends TestCase
         $this->createTodo(['todo_title' => 'Todo C']);
 
         // Make a GET request with a filter
-        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['todo_title' => odo A']]);
+        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['todo_title' => todo A']]);
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
@@ -72,7 +72,7 @@ class ListAllTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("T odo::messages.fetch_success"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.fetch_success"), $payload['data']['message']);
         $this->assertArrayHasKey(odos', $payload['data']);
     }
 

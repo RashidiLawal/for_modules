@@ -21,7 +21,6 @@ trait CreateTestGroups
             'group_title'               => 'Test Group ' . uniqid(),
             'group_description'        => 'Test for Group-' . uniqid(),
             'completed'                => true,
-            'group_slug'               => 'test-group-' . uniqid(),
         ], $data));
     }
 }
