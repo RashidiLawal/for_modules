@@ -31,9 +31,9 @@ class ListAllGroupsActionTest extends TestCase
         $app = $this->getAppInstance();
 
         // Create test groups
-        $this->createGroup(['group_name' => 'Group 1']);
-        $this->createGroup(['group_name' => 'Group 2']);
-        $this->createGroup(['group_name' => 'Group 3']);
+        $this->createGroup(['group_title' => 'Group 1']);
+        $this->createGroup(['group_title' => 'Group 2']);
+        $this->createGroup(['group_title' => 'Group 3']);
 
         // Make a GET request to fetch all groups
         $request = $this->createRequest('GET', $this->getRoute([
@@ -59,12 +59,12 @@ class ListAllGroupsActionTest extends TestCase
         $app = $this->getAppInstance();
 
         // Create test groups
-        $this->createGroup(['group_name' => 'Group A']);
-        $this->createGroup(['group_name' => 'Group B']);
-        $this->createGroup(['group_name' => 'Group C']);
+        $this->createGroup(['group_title' => 'Group A']);
+        $this->createGroup(['group_title' => 'Group B']);
+        $this->createGroup(['group_title' => 'Group C']);
 
         // Make a GET request with a filter
-        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['group_name' => 'Group A']]);
+        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['group_title' => 'Group A']]);
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
@@ -84,13 +84,13 @@ class ListAllGroupsActionTest extends TestCase
         $app = $this->getAppInstance();
 
         // Create test groups
-        $this->createGroup(['group_name' => 'Group Z']);
-        $this->createGroup(['group_name' => 'Group A']);
-        $this->createGroup(['group_name' => 'Group M']);
+        $this->createGroup(['group_title' => 'Group Z']);
+        $this->createGroup(['group_title' => 'Group A']);
+        $this->createGroup(['group_title' => 'Group M']);
 
         // Make a GET request with sorting
         $request = $this->createGetRequest($this->getRoute(), [
-            'sort_by' => 'group_name',
+            'sort_by' => 'group_title',
             'sort_order' => 'ASC'
         ]);
         $response = $app->handle($request);

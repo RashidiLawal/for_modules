@@ -40,7 +40,7 @@ class GetSingleGroupActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.group_fetched"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.group_fetched"), $payload['data']['message']);
     }
 
     /**
@@ -60,6 +60,6 @@ class GetSingleGroupActionTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
         $this->assertEquals(404, $payload['statusCode']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.group_not_found"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.group_not_found"), $payload['data']['message']);
     }
 }
