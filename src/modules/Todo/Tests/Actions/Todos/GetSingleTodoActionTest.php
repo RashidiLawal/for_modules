@@ -17,21 +17,21 @@ class GetSingleTodoActionTest extends TestCase
      */
     private function getRoute(int|string $todoId): string
     {
-        return $this->generateRouteUrl('affiliates.show', ['id' => $todoId]);
+        return $this->generateRouteUrl('todos.show', ['id' => $todoId]);
     }
 
     /**
      * Test successful fetching of a single todo.
      */
-    public function testGetSingleAffiliateActionSuccess(): void
+    public function testGetSingleTodoActionSuccess(): void
     {
         $app = $this->getAppInstance();
 
         // Create a test todo
-        $affiliate = $this->createTodo();
+        $todo = $this->createTodo();
 
         // Make a GET request to fetch the todo
-        $request = $this->createRequest('GET', $this->getRoute($affiliate->id));
+        $request = $this->createRequest('GET', $this->getRoute($todo->id));
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
@@ -40,7 +40,7 @@ class GetSingleTodoActionTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.affiliate_fetched"), $payload['data']['message']);
+        $this->assertEquals(trans("todo::messages.todo_fetched"), $payload['data']['message']);
     }
 
     /**
@@ -60,7 +60,7 @@ class GetSingleTodoActionTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
         $this->assertEquals(404, $payload['statusCode']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("Affiliate::messages.affiliate_not_found"), $payload['data']['message']);
+        $this->assertEquals(trans("todo::messages.todo_not_found"), $payload['data']['message']);
     }
 
     /**
