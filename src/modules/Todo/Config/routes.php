@@ -55,22 +55,22 @@ return function (App $app) {
     // Groups routes
     $app->group('/api/groups', function ($group) {
         $group->post('', GroupAction::class)
-            ->setName('groups.store');
+            ->setName('todo_groups.store');
 
         $group->get('', ListAllGroupsAction::class)
-            ->setName('groups.index');
+            ->setName('todo_groups.index');
 
         $group->get('/{id}', GetSingleGroupAction::class)
-            ->setName('groups.show');
+            ->setName('todo_groups.show');
 
         $group->put('/{id}', UpdateGroupAction::class)
-            ->setName('groups.update');
+            ->setName('todo_groups.update');
 
         $group->delete('/bulk', DeleteBulkGroupsAction::class)
-            ->setName('groups.bulkDelete');
+            ->setName('todo_groups.bulkDelete');
 
         $group->delete('/{id}', DeleteGroupAction::class)
-            ->setName('groups.delete');
+            ->setName('todo_groups.delete');
 
         $group->get('/slug/{group_slug}', ListGroupBySlugAction::class)
             ->setName('groups.fetchBySlug');
