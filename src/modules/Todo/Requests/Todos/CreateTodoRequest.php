@@ -17,9 +17,6 @@ class CreateTodoRequest extends RequestValidator
                 'todo_title' => 'required|string|max:255',
                 'todo_description' => 'required|string|max:255',
                 'completed' => 'boolean',
-                'created_at'   => 'sometimes|date',
-                'updated_at'   => 'sometimes|date',
-                'deleted_at'    => 'sometimes|date',
             ];
     }
 }

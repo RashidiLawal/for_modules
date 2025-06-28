@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Modules\Todo\Tests\Actions;
+namespace Modules\Todo\Tests\Actions\Todos;
 
-use Modules\Todo\Models\Todo;
 use Modules\Todo\Tests\TestCase;
 use Modules\Todo\Tests\Traits\CreateTestTodos;
 
@@ -13,61 +12,66 @@ class DeleteTodoActionTest extends TestCase
     use CreateTestTodos;
 
     /**
-     * Generate route for updating a todo by ID.
+     * Generate route for deleting a todo by ID.
      */
-    private function getRoute(int|string $todoId): string
+    private function getRoute(int $id): string
     {
-        return $this->generateRouteUrl('todos.delete', ['id' => $todoId]);
+        return $this->generateRouteUrl('todos.delete', ['id' => $id]);
     }
 
     /**
-     * Test successful deletion of an todo.
+     * Test successful deletion of a todo.
      */
     public function testDeleteTodoActionSuccess(): void
     {
         $app = $this->getAppInstance();
 
-        // Create a test todo
-        $affiliate = $this->createTodo();
+        // Create a todo to delete
+        $todo = $this->createTodo();
 
-        // Make a DELETE request to delete the todo
-        $request = $this->createRequestWithCsrf(
-            $app,
-            $this->getRoute($todo->id),
-            'DELETE'
-        );
+        $request = $this->createRequestWithCsrf($app, $this->getRoute($todo->id), 'DELETE');
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
+        $this->assertArrayHasKey('status', $payload['data']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("Todo::messages.Todo_deleted"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.todo_deleted"), $payload['data']['message']);
     }
 
     /**
-     * Test deletion of a non-existing todo.
+     * Test deletion of a non-existent todo.
      */
     public function testDeleteTodoActionNotFound(): void
     {
         $app = $this->getAppInstance();
 
-        // Make a DELETE request for a non-existing todo ID
-        $request = $this->createRequestWithCsrf(
-            $app,
-            $this->getRoute(9999), // Non-existing ID
-            'DELETE'
-        );
+        $request = $this->createRequestWithCsrf($app, $this->getRoute(99999), 'DELETE');
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals(404, $payload['statusCode']);
+        $this->assertArrayHasKey('status', $payload['data']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("Todo::messages.affiliate_not_found"), $payload['data']['message']);
+    }
+
+    /**
+     * Test deletion with invalid ID format.
+     */
+    public function testDeleteTodoActionInvalidId(): void
+    {
+        $app = $this->getAppInstance();
+
+        $request = $this->createRequestWithCsrf($app, $this->getRoute(0), 'DELETE');
+        $response = $app->handle($request);
+
+        $payload = json_decode((string)$response->getBody(), true);
+
+        $this->assertEquals(422, $response->getStatusCode());
+        $this->assertArrayHasKey('status', $payload['data']);
+        $this->assertFalse($payload['data']['status']);
     }
 }

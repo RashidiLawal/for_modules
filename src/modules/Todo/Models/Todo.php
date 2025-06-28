@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Models;
 
 use BitCore\Foundation\Database\Eloquent\SoftDeletes;
-// use BitCore\Foundation\Database\Model;
+
 use BitCore\Application\Models\AppModel;
 
 /**
@@ -49,6 +49,6 @@ class Todo extends AppModel
      */
     public function group()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsToRelation(Group::class);
     }
 }

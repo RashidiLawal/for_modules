@@ -20,6 +20,7 @@ trait CreateTestGroups
         return Group::create(array_merge([
             'group_title'               => 'Test Group ' . uniqid(),
             'group_description'        => 'Test for Group-' . uniqid(),
+            'group_slug'               => 'test-group-' . uniqid(),
             'completed'                => true,
         ], $data));
     }

@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Modules\Todo\Tests\Actions;
+namespace Modules\Todo\Tests\Actions\Todos;
 
 use Modules\Todo\Models\Todo;
 use Modules\Todo\Tests\TestCase;
 use Modules\Todo\Tests\Traits\CreateTestTodos;
-
 
 class ListAllTodoActionTest extends TestCase
 {
     use CreateTestTodos;
 
     /**
-     * Generate route for fetching todo with optional query parameters.
+     * Generate route for fetching todos with optional query parameters.
      *
      * @param array $queryParams Associative array of query parameters.
      * @return string The generated route URL.
@@ -42,17 +41,16 @@ class ListAllTodoActionTest extends TestCase
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
         $this->assertEquals(trans("Todo::messages.fetch_success"), $payload['data']['message']);
+        $this->assertArrayHasKey('todos', $payload['data']);
     }
 
     /**
      * Test fetching todos with filters.
      */
-    
     public function testFetchAllTodoActionWithFilters(): void
     {
         $app = $this->getAppInstance();
@@ -63,23 +61,22 @@ class ListAllTodoActionTest extends TestCase
         $this->createTodo(['todo_title' => 'Todo C']);
 
         // Make a GET request with a filter
-        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['todo_title' => todo A']]);
+        $request = $this->createGetRequest($this->getRoute(), ['filters' => ['todo_title' => 'Todo A']]);
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
         $this->assertEquals(trans("Todo::messages.fetch_success"), $payload['data']['message']);
-        $this->assertArrayHasKey(odos', $payload['data']);
+        $this->assertArrayHasKey('todos', $payload['data']);
     }
 
     /**
      * Test fetching todos with sorting.
      */
-    public function testFetchAllAffiliateActionWithSorting(): void
+    public function testFetchAllTodoActionWithSorting(): void
     {
         $app = $this->getAppInstance();
 
@@ -97,9 +94,36 @@ class ListAllTodoActionTest extends TestCase
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
         $this->assertTrue($payload['data']['status']);
+        $this->assertArrayHasKey('todos', $payload['data']);
+    }
+
+    /**
+     * Test fetching todos with pagination.
+     */
+    public function testFetchAllTodoActionWithPagination(): void
+    {
+        $app = $this->getAppInstance();
+
+        // Create test todos
+        for ($i = 1; $i <= 5; $i++) {
+            $this->createTodo(['todo_title' => "Todo {$i}"]);
+        }
+
+        // Make a GET request with pagination
+        $request = $this->createGetRequest($this->getRoute(), [
+            'page' => 1,
+            'per_page' => 2
+        ]);
+        $response = $app->handle($request);
+
+        $payload = json_decode((string)$response->getBody(), true);
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertTrue($payload['data']['status']);
+        $this->assertArrayHasKey('todos', $payload['data']);
+        $this->assertArrayHasKey('pagination', $payload['data']);
     }
 }

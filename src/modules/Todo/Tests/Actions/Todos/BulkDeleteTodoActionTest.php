@@ -24,7 +24,6 @@ class BulkDeleteTodoActionTest extends TestCase
      * Test successful bulk deletion of todos.
      */
     public function testBulkDeleteTodoActionSuccess(): void
-    z
     {
         $app = $this->getAppInstance();
 
