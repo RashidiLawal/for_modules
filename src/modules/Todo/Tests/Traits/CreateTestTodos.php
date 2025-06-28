@@ -21,6 +21,7 @@ trait CreateTestTodos
         return Todo::create(array_merge([
             'todo_title'          => 'Test Todo ' . uniqid(),
             'todo_description'    => 'Description for Todo-' . uniqid(),
+            'todo_slug'          => 'test-todo-' . uniqid(),
             'completed'          => true,
             'group_id'          => 1, // Default group ID, adjust as needed
         ], $data));

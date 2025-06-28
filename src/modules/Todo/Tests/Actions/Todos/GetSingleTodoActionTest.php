@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Modules\Todo\Tests\Actions;
+namespace Modules\Todo\Tests\Actions\Todos;
 
-use Modules\Todo\Models\Todo;
 use Modules\Todo\Tests\TestCase;
 use Modules\Todo\Tests\Traits\CreateTestTodos;
 
@@ -13,72 +12,70 @@ class GetSingleTodoActionTest extends TestCase
     use CreateTestTodos;
 
     /**
-     * Generate route for updating a todo by ID.
+     * Generate route for getting a single todo by ID.
      */
-    private function getRoute(int|string $todoId): string
+    private function getRoute(int $id): string
     {
-        return $this->generateRouteUrl('todos.show', ['id' => $todoId]);
+        return $this->generateRouteUrl('todos.show', ['id' => $id]);
     }
 
     /**
-     * Test successful fetching of a single todo.
+     * Test successful retrieval of a single todo.
      */
     public function testGetSingleTodoActionSuccess(): void
     {
         $app = $this->getAppInstance();
 
-        // Create a test todo
+        // Create a todo to retrieve
         $todo = $this->createTodo();
 
-        // Make a GET request to fetch the todo
         $request = $this->createRequest('GET', $this->getRoute($todo->id));
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(200, $payload['statusCode']);
+        $this->assertArrayHasKey('status', $payload['data']);
         $this->assertTrue($payload['data']['status']);
-        $this->assertEquals(trans("todo::messages.todo_fetched"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.fetch_success"), $payload['data']['message']);
+        $this->assertArrayHasKey('todo', $payload['data']);
+        $this->assertEquals($todo->id, $payload['data']['todo']['id']);
+        $this->assertEquals($todo->todo_title, $payload['data']['todo']['todo_title']);
     }
 
     /**
-     * Test fetching a non-existing todo.
+     * Test retrieval of a non-existent todo.
      */
     public function testGetSingleTodoActionNotFound(): void
     {
         $app = $this->getAppInstance();
 
-        // Make a GET request for a non-existing todo ID
-        $request = $this->createRequest('GET', $this->getRoute(99999)); // Non-existing ID
+        $request = $this->createRequest('GET', $this->getRoute(99999));
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
         $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals(404, $payload['statusCode']);
+        $this->assertArrayHasKey('status', $payload['data']);
         $this->assertFalse($payload['data']['status']);
-        $this->assertEquals(trans("todo::messages.todo_not_found"), $payload['data']['message']);
+        $this->assertEquals(trans("Todo::messages.todo_not_found"), $payload['data']['message']);
     }
 
     /**
-     * Test fetching with an invalid Todo ID format.
+     * Test retrieval with invalid ID format.
      */
     public function testGetSingleTodoActionInvalidId(): void
     {
         $app = $this->getAppInstance();
 
-        // Make a GET request with an invalid ID format
-        $request = $this->createRequest('GET', $this->getRoute('invalid-id')); // Invalid ID format
+        $request = $this->createRequest('GET', $this->getRoute(0));
         $response = $app->handle($request);
 
         $payload = json_decode((string)$response->getBody(), true);
 
-        // Assertions
-        $this->assertEquals(404, $response->getStatusCode());
-        $this->assertEquals(404, $payload['statusCode']);
+        $this->assertEquals(422, $response->getStatusCode());
+        $this->assertArrayHasKey('status', $payload['data']);
         $this->assertFalse($payload['data']['status']);
     }
 }

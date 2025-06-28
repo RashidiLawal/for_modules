@@ -53,6 +53,6 @@ class Group extends AppModel
      */
     public function affiliates()
     {
-        return $this->hasMany(Todo::class);
+        return $this->hasManyRelation(Todo::class);
     }
 }
