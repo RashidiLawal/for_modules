@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\Affiliate\Actions\Groups;
+namespace Modules\Todo\Actions\Groups;
 
 use Psr\Http\Message\ResponseInterface as Response;
-use Modules\Affiliate\Requests\Groups\CreateGroupRequest;
+use Modules\Todo\Requests\Groups\CreateGroupRequest;
 use OpenApi\Attributes as OA;
 
 /**
