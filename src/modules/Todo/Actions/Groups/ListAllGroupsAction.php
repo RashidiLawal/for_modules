@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Todo\Actions\Groups;
 
 use Psr\Http\Message\ResponseInterface as Response;
-use Modules\Affiliate\Requests\Groups\FetchAllGroupsRequest;
+use Modules\Todo\Requests\Groups\ListAllGroupsRequest;
 use OpenApi\Attributes as OA;
 
 /**
@@ -105,7 +105,7 @@ class ListAllGroupsAction extends GroupAction
     protected function action(): Response
     {
         try {
-            $queryParams = FetchAllGroupsRequest::data();
+            $queryParams = ListAllGroupsRequest::data();
             $groups = $this->groupRepository->fetchWithFilters($queryParams);
 
             return $this->respondWithData([
