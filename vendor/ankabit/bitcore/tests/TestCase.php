@@ -13,6 +13,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use BitCore\Kernel\App;
 
+
 class TestCase extends PHPUnit_TestCase
 {
     use ProphecyTrait;
