@@ -9,7 +9,7 @@ use BitCore\Application\Services\Requests\RequestValidator;
 class UpdateGroupRequest extends RequestValidator
 {
     /**
-     * Define validation rules for updating an affiliate group.
+     * Define validation rules for updating an todo group.
      *
      * @return array
      */

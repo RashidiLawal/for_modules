@@ -10,7 +10,7 @@ use BitCore\Application\Services\Requests\RequestValidator;
 class UpdateTodoRequest extends RequestValidator
 {
     /**
-     * Validation rules
+     * Validation rules for making an update to a todo item.
      */
     public static function rules(): array
     {

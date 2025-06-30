@@ -3,12 +3,12 @@
 return [
     // Success messages
     'todo_created'           => 'Todo created successfully.',
-    'todo_fetched'           => 'Todo fetched successfully.',
+    'todo_list'           => 'Todo fetched successfully.',
     'todo_deleted'           => 'Todo Deleted successfully.',
 
     // Validation and conflict errors
-    'todo_title_exists'       => 'An todo with this title already exists.',
-    'todo_slug_exists'       => 'An todo with this slug already exists.',
+    'todo_title_exists'       => 'A todo with this title already exists.',
+    'todo_slug_exists'       => 'A todo with this slug already exists.',
 
     // Failure messages
     'todo_creation_failed'   => 'Failed to create todo. Please try again.',
@@ -29,7 +29,7 @@ return [
 
     'group_deleted'      => 'Group deleted successfully.',
     'group_not_found'    => 'Group not found.',
-    'group_fetched'           => 'Group fetched successfully.',
+    'group_list'           => 'Group fetched successfully.',
 
     'bulk_group_delete_success' => 'Groups deleted successfully.',
     'bulk_group_delete_failed'  => 'Failed to delete groups.',

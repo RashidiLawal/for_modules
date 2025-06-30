@@ -9,9 +9,9 @@ use Modules\Todo\Requests\Groups\ListAllGroupsRequest;
 use OpenApi\Attributes as OA;
 
 /**
- * Class FetchAllGroupsAction
+ * Class ListhAllGroupsAction
  *
- * Handles fetching and filtering todo groups.
+ * Handles listing and filtering todo groups.
  */
 class ListAllGroupsAction extends GroupAction
 {

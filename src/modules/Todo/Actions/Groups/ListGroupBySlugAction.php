@@ -8,9 +8,9 @@ use Psr\Http\Message\ResponseInterface as Response;
 use OpenApi\Attributes as OA;
 
 /**
- * Class FetchGroupBySlugAction
+ * Class ListGroupBySlugAction
  *
- * Handles retrieving an affiliate group by its slug.
+ * Handles Listing a Todo group by its slug.
  */
 class ListGroupBySlugAction extends GroupAction
 {
