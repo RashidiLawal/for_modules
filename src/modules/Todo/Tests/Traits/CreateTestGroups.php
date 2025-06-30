@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Todo\Tests\Traits;
 
-use BitCore\Foundation\Carbon;
 use Modules\Todo\Models\Group;
 
 trait CreateTestGroups
