@@ -10,9 +10,9 @@ use Modules\Todo\Requests\Groups\UpdateGroupRequest;
 use OpenApi\Attributes as OA;
 
 /**
- * Class EditGroupAction
+ * Class UpdateGroupAction
  *
- * Updates an existing affiliate group.
+ * implements minor changes on an existing todo group.
  */
 class UpdateGroupAction extends GroupAction
 {

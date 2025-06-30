@@ -73,6 +73,6 @@ return function (App $app) {
             ->setName('todo_groups.delete');
 
         $group->get('/slug/{group_slug}', ListGroupBySlugAction::class)
-            ->setName('groups.fetchBySlug');
+            ->setName('todo_groups.fetchBySlug');
     });
 };

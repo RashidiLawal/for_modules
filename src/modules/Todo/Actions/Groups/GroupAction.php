@@ -36,6 +36,15 @@ use OpenApi\Attributes as OA;
         )
     ]
 )]
+
+/**
+ * Summary of GroupAction
+ * @package Modules\Todo\Actions\Groups
+ * The Base Action for all Group related actions.
+ * It initializes the GroupRepositoryInterface for use in derived classes.
+ * This abstract class provides common functionality for group-related actions,
+ * 
+ */
 abstract class GroupAction extends Action
 {
     protected GroupRepositoryInterface $groupRepository;

@@ -9,7 +9,7 @@ use BitCore\Application\Services\Requests\RequestValidator;
 class ListAllGroupsRequest extends RequestValidator
 {
     /**
-     * Get the validation rules for creating a Payment Mode.
+     * Get the validation rules for lising todo group.
      */
     public static function rules(): array
     {
