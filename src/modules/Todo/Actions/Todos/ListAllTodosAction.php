@@ -7,6 +7,11 @@ namespace Modules\Todo\Actions\Todos;
 use Psr\Http\Message\ResponseInterface as Response;
 use Modules\Todo\Requests\Todos\ListAllTodosRequest;
 
+/**
+ * Class ListAllTodosAction
+ *
+ * Handles listing of all todos.
+ */
  class ListAllTodosAction extends TodoAction
  {
      protected function action(): Response

@@ -8,6 +8,11 @@ use Exception;
 use Modules\Todo\Requests\Todos\UpdateTodoRequest;
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Class UpdateTodoAction
+ *
+ * Handles making minor changes on a todo by its id.
+ */
 class UpdateTodoAction extends TodoAction 
 {
      /**
