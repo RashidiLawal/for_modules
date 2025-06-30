@@ -4,7 +4,11 @@ declare(strict_types=1);
 namespace Modules\Todo\Actions\Todos;
 
 use Psr\Http\Message\ResponseInterface as Response;
-
+/**
+ * Class DeleteTodosAction
+ *
+ * Handles the deletion of a todo.
+ */
 class DeleteTodoAction extends TodoAction
 {
     /**

@@ -10,7 +10,7 @@ use OpenApi\Attributes as OA;
 /**
  * Class ListTodoBySlugAction
  *
- * Handles retrieving an todo by its slug.
+ * Handles listing a todo by its slug.
  */
 class ListTodoBySlugAction extends TodoAction
 {

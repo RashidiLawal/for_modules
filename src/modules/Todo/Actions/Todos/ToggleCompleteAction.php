@@ -6,6 +6,11 @@ namespace Modules\Todo\Actions\Todos;
 use Modules\Todo\Actions\Todos\TodoAction;
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Class ToggleCompleteAction
+ *
+ * Handles wether the todo is completed or not.
+ */
 class ToggleCompleteAction extends TodoAction
 {
     /**
