@@ -25,10 +25,5 @@ trait CreateTestTodos
             'group_id'          => 1, // Default group ID, adjust as needed
         ], $data));
     }
-    
-    public function getTodoTitle(): string
-{
-    return $this->todo_title;
-}
 
 }

@@ -81,7 +81,7 @@ class CreateTodoActionTest extends TestCase
         $existingTodo = $this->createTodo();
 
         $requestData = [
-            'todo_title'       => $existingTodo->getTodoTitle(),
+            'todo_title'       => $existingTodo->todo_title,
             'todo_description' => 'Another description',
             'completed'        => false,
         ];
