@@ -32,8 +32,8 @@ class TestCase extends BaseTestCase
     protected function tearDown(): void
     {
         // Clean up test data
-        $this->todoRepository = null;
-        $this->groupRepository = null;
+       unset($this->todoRepository);
+        unset($this->groupRepository);
         
         parent::tearDown();
     }
