@@ -68,7 +68,14 @@ class BackupService
             $zip->close();
             // Store zip to storage disk
             $fileContents = file_get_contents($tmpFile);
-            storage($disk)->put($backupPath, $fileContents);
+            if ($disk === 'gdrive') {
+                if (!class_exists('Hypweb\\Flysystem\\GoogleDrive\\GoogleDriveAdapter')) {
+                    throw new Exception('Google Drive adapter not installed. Run: composer require nao-pon/flysystem-google-drive');
+                }
+                storage('gdrive')->put($backupPath, $fileContents);
+            } else {
+                storage($disk)->put($backupPath, $fileContents);
+            }
             $status = 'completed';
             // Clean up temp files
             @unlink($tmpFile);
