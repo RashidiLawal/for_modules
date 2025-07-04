@@ -59,10 +59,21 @@ class RemoteUploadService
         try {
             // Read backup file from local disk
             $fileContents = storage($localDisk)->get($backupPath);
-            // Upload to remote provider
             $remotePath = $backupPath; // Use same path on remote
-            // Optionally: configure credentials for provider (not shown here)
-            storage($provider)->put($remotePath, $fileContents);
+
+            // Explicitly handle Google Drive
+            if ($provider === 'gdrive') {
+                if (!class_exists('Hypweb\\Flysystem\\GoogleDrive\\GoogleDriveAdapter')) {
+                    return [
+                        'status' => false,
+                        'message' => 'Google Drive adapter not installed. Run: composer require nao-pon/flysystem-google-drive',
+                    ];
+                }
+                storage('gdrive')->put($remotePath, $fileContents);
+            } else {
+                // Generic: use the provider as disk name
+                storage($provider)->put($remotePath, $fileContents);
+            }
             // Update backup record
             $this->backupRepository->update($backupId, [
                 'uploaded_to' => $provider,
