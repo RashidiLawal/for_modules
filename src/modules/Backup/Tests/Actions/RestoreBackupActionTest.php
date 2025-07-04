@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Modules\Backup\Tests\Actions;
 
 use Modules\Backup\Tests\TestCase;
+use Modules\Backup\Tests\Traits\CreateTestBackups;
 
 /**
  * Test restoring a backup.
  */
 class RestoreBackupActionTest extends TestCase
 {
+    use CreateTestBackups;
     /**
      * Test restoring a backup (files).
      */
@@ -18,13 +20,8 @@ class RestoreBackupActionTest extends TestCase
     {
         $app = $this->getAppInstance();
 
-        // Create a backup record
-        $backup = $this->backupRepository->create([
-            'type' => 'files',
-            'path' => 'backups/test.zip',
-            'disk' => 'local',
-            'status' => 'completed',
-        ]);
+        // Create a backup record using the trait
+        $backup = $this->createBackup();
 
         $requestData = [
             'backup_id' => $backup->id,
