@@ -15,7 +15,9 @@
         }
     ],
      "require": {
-        "ankabit/bitcore": "dev-main"
+        "ankabit/bitcore": "dev-main",
+        "league/flysystem": "^3.10.0",
+        "masbug/flysystem-google-drive-ext": "^2.4"
  },
  "repositories": [
     {
