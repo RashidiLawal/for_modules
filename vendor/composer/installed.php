@@ -3,7 +3,7 @@
         'name' => 'user/bit_try',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '1a162641aa3be5547ef67c6d036e17b7091a9a43',
+        'reference' => 'c3216dc660b8cee2c97693b433a2dca97129219e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -1005,7 +1005,7 @@
         'user/bit_try' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '1a162641aa3be5547ef67c6d036e17b7091a9a43',
+            'reference' => 'c3216dc660b8cee2c97693b433a2dca97129219e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

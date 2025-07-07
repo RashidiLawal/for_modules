@@ -84,7 +84,7 @@
                 "project"
             ],
             "support": {
-                "source": "https://github.com/ankabit/bitcore/tree/dev",
+                "source": "https://github.com/ankabit/bitcore/tree/main",
                 "issues": "https://github.com/ankabit/bitcore/issues"
             },
             "time": "2025-06-19T22:21:50+00:00"

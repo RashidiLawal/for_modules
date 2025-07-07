@@ -7,8 +7,8 @@
  {
      public function up()
      {
-         if (!Capsule::schema()->hasTable('todo_groups')) {
-             Capsule::schema()->create('todo_groups', function (mixed $table) {
+         if (!Capsule::schema()->hasTable('todo-groups')) {
+             Capsule::schema()->create('todo-groups', function (mixed $table) {
                  $table->increments('id');
                  $table->string('todo_title')->unique();
                  $table->text('todo_description');
@@ -21,6 +21,6 @@
 
      public function down()
      {
-         Capsule::schema()->dropIfExists('todo_groups');
+         Capsule::schema()->dropIfExists('todo-groups');
      }
  };
