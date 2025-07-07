@@ -70,7 +70,7 @@ class BackupService
             $fileContents = file_get_contents($tmpFile);
             if ($disk === 'gdrive') {
                 if (!class_exists('Hypweb\\Flysystem\\GoogleDrive\\GoogleDriveAdapter')) {
-                    throw new Exception('Google Drive adapter not installed. Run: composer require nao-pon/flysystem-google-drive');
+                    throw new Exception('Google Drive adapter not installed. Run: composer require masbug/flysystem-google-drive-ext');
                 }
                 storage('gdrive')->put($backupPath, $fileContents);
             } else {
