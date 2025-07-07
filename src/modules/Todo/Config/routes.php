@@ -53,7 +53,7 @@ return function (App $app) {
     });
 
     // Groups routes
-    $app->group('/api/todo-groups', function ($group) {
+    $app->group('/api/todo_groups', function ($group) {
         $group->post('', GroupAction::class)
             ->setName('todo_groups.store');
 

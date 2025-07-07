@@ -33,7 +33,7 @@ class Group extends AppModel
 {
     use SoftDeletes;
 
-    protected $table = 'todo-groups';
+    protected $table = 'todo_groups';
 
     protected $fillable = [
         'group_title',
