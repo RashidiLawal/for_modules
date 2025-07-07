@@ -49,9 +49,9 @@ class Group extends AppModel
     ];
 
     /**
-     * Get all affiliates belonging to this group.
+     * Get all todos belonging to this group.
      */
-    public function affiliates()
+    public function todos()
     {
         return $this->hasManyRelation(Todo::class);
     }
