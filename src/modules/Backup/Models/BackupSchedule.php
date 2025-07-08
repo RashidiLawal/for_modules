@@ -27,7 +27,7 @@ class BackupSchedule extends AppModel
         'interval',
         'time',
         'type',
-        'paths',
+        'file_path',
         'disk',
         'status',
         'last_run_at',

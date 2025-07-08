@@ -23,7 +23,7 @@ trait CreateTestBackups
     {
         $defaults = [
             'type' => 'files',
-            'path' => 'backups/test_' . uniqid() . '.zip',
+            'file_path' => 'backups/test_' . uniqid() . '.zip',
             'disk' => 'local',
             'status' => 'completed',
         ];

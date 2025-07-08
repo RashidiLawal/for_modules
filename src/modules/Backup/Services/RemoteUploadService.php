@@ -49,7 +49,7 @@ class RemoteUploadService
             ];
         }
         $localDisk = $backup->disk ?? 'local';
-        $backupPath = $backup->path ?? $backup->file_path ?? null;
+        $backupPath = $backup->file_path ?? null;
         if (!$backupPath) {
             return [
                 'status' => false,

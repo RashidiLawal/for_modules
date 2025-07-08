@@ -18,7 +18,7 @@ return new class() extends Migration {
                 $table->string('interval'); // hourly, daily, weekly, monthly
                 $table->string('time')->nullable(); // e.g., '02:00' for daily
                 $table->string('type'); // files, database, both
-                $table->json('paths')->nullable(); // files/directories to backup
+                $table->json('file_path')->nullable(); // files/directories to backup
                 $table->string('disk')->default('local');
                 $table->string('status')->default('active'); // active, paused, etc.
                 $table->timestamp('last_run_at')->nullable();

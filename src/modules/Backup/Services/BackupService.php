@@ -85,7 +85,7 @@ class BackupService
             // Save metadata
             $backup = $this->backupRepository->create([
                 'type' => $type,
-                'path' => $backupPath,
+                'file_path' => $backupPath,
                 'disk' => $disk,
                 'status' => $status,
                 'meta' => $meta,
@@ -195,7 +195,7 @@ class BackupService
             ];
         }
         $disk = $backup->disk ?? 'local';
-        $backupPath = $backup->path ?? $backup->file_path ?? null;
+        $backupPath = $backup->file_path ?? null;
         if (!$backupPath) {
             return [
                 'status' => false,

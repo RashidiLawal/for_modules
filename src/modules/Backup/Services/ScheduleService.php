@@ -29,7 +29,7 @@ class ScheduleService
                 'interval' => $data['interval'],
                 'time' => $data['time'] ?? null,
                 'type' => $data['type'],
-                'paths' => $data['paths'] ?? [],
+                'file_path' => $data['file_path'] ?? [],
                 'disk' => $data['disk'] ?? 'local',
                 'status' => 'active',
                 'last_run_at' => null,

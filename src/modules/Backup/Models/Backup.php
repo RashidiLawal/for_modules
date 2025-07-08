@@ -27,7 +27,7 @@ class Backup extends AppModel
     protected $table = 'backups';
     protected $fillable = [
         'type', // files, database, both
-        'path',
+        'file_path',
         'disk',
         'status',
         'scheduled_at',
