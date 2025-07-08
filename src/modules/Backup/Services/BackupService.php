@@ -88,7 +88,6 @@ class BackupService
                 'file_path' => $backupPath,
                 'disk' => $disk,
                 'status' => $status,
-                'meta' => $meta,
             ]);
             return [
                 'status' => true,
